@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.recentviewed_post { width: 100%; list-style: none;}
+.recentviewed_post li {  list-style: none; padding: 0 0 10px 0; clear:both;}
+.recentviewed_left {float:left; margin-right: 10px; display:table;}
+.recentviewed_right:before,.recentviewed_right:after {content:''; display:table;}
+.recentviewed_right:after {clear:both;}
+
+
+
