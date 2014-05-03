@@ -7,7 +7,7 @@ Tested up to: 3.9
 Stable tag: 1.0
 License: GPLv2 or later
 
-Posts Viewed Recently plugin shows posts or pages viewed by a visitor as a responsive sidebar widget or on a page/post using shortcode
+Posts Viewed Recently plugin shows recently viewed posts or pages by a visitor as a responsive sidebar widget or on a page/post using shortcode
 
 == Description ==
 
