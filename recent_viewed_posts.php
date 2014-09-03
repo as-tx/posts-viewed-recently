@@ -125,7 +125,7 @@ License: GPLv2 or later
 	
 	
 	// widget display
-	function widget($args) {
+	function widget($args,$instance1) {
 		
 		$widgetID = $args['widget_id'];	
 		$widgetID = str_replace('recent_viewed_posts-', '', $widgetID);
