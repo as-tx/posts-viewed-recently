@@ -3,7 +3,7 @@
 Plugin Name: Posts Viewed Recently
 Plugin URI: http://dev.fellowtuts.com/posts-viewed-recently-plugin/
 Description: Posts Viewed Recently plugin shows posts/pages viewed by a visitor as a responsive sidebar widget or in post/page using shortcode
-Version: 1.1
+Version: 1.2
 Author: Amit Sonkhiya, Kamal Agrawal
 Author URI: http://dev.fellowtuts.com
 License: GPLv2 or later
@@ -205,7 +205,7 @@ License: GPLv2 or later
             echo apply_filters( 'the_title', $ft_post->post_title, $ft_post->ID ); ?>
             </a>
 			<?php if ( $show_date ) : ?>
-				<br /><span class="post-date"><small><?php echo date('F d, Y',strtotime($ft_post->post_date)); ?></small></span>
+				<br /><span class="post-date"><small><?php echo date(get_option('date_format'),strtotime($ft_post->post_date)); ?></small></span>
 			<?php endif; ?>
             </div>
 			</li>

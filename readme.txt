@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=amits
 Tags: recent, recently,last, viewed, visited, post, posts, page, pages, widget, thumbnail, thumbnails, sidebar, plugin, wordpress, custom, taxonomy
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 
 Posts Viewed Recently plugin shows recently viewed posts or pages by a visitor as a responsive sidebar widget or on a page/post using shortcode
@@ -57,6 +57,9 @@ No, this plugin doesn't have any CSS rule for coloring of links and texts. It ju
 
 == Changelog ==
 
+= 1.2 =
+* plugin updated to show post date in format as set in WordPress setting
+
 = 1.1 =
 * Bugfix: Posts Viewed Recently in sidebar and current post were displaying same publish date. Issue fixed
 
@@ -65,6 +68,9 @@ No, this plugin doesn't have any CSS rule for coloring of links and texts. It ju
 
 
 == Upgrade Notice ==
+
+= 1.2 =
+Update: Post date format is same as given in WordPress setting
 
 = 1.1 =
 Bugfix: Post date issue fixed
