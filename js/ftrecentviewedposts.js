@@ -10,9 +10,9 @@ jQuery(document).ready(function() {
                 jQuery(this).parent().next().show();
             else
                 jQuery(this).parent().next().hide();
-        }) 
+        }); 
 	}
     jQuery(document).ajaxStop(function() {
         runcheck();
     });
-})
+});
