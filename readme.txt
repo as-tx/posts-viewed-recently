@@ -11,7 +11,7 @@ Posts Viewed Recently plugin shows recently viewed posts or pages by a visitor a
 
 == Description ==
 
-This plugin contains a responsive widget for showing posts or pages recently visited by a visitor. This plugin is capable to show custom post types and you can also show this widget on your page/post using shortcode provided in widget options.
+This plugin contains a responsive widget for showing posts or pages recently visited by a visitor. Posts Viewed Recently plugin is capable to show custom post types and you can also show this widget on your page/post using shortcode provided in widget options.
 
 With this plugin you can choose post types to show, the number of posts to display, show or hide the featured image, dimensions of the featured image and alternate image URL if featured image is not available, and display post date or not. 
 
