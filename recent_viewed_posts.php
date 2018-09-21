@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Posts Viewed Recently
-Plugin URI: https://fellowtuts.com/posts-viewed-recently-plugin/
+Plugin URI: https://www.astech.club/wordpress-javascript-jquery-plugins/posts-viewed-recently/
 Description: Posts Viewed Recently plugin shows posts/pages viewed by a visitor as a responsive sidebar widget or in post/page using the shortcode.
 Version: 1.3
 Author: AS Tech Solutions
