@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/astx
 Tags: recent, recently, last, viewed, visited, post, posts, page, pages, widget, thumbnail, thumbnails, sidebar, plugin, wordpress, custom, taxonomy
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2 or later
 
 Posts Viewed Recently plugin shows recently viewed posts or pages by a visitor as a responsive sidebar widget or on a page/post using the shortcode.
@@ -61,6 +61,10 @@ No, this plugin doesn't have any CSS rule for link and text colours. It just inh
 
 == Changelog ==
 
+= 1.3.1 =
+* Direct file access blocked
+* Code optimization by avoiding arguments parsing till the cookie existence check
+
 = 1.3 =
 * Security bug fixes and code enhancement
 
@@ -75,6 +79,10 @@ No, this plugin doesn't have any CSS rule for link and text colours. It just inh
 
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+* Direct file access blocked
+* Code optimization
 
 = 1.3 =
 Bugfix: Major security updates
