@@ -1,10 +1,12 @@
-<?php
+<?php if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 /*
 Plugin Name: Posts Viewed Recently
 Plugin URI: https://www.astech.club/wordpress-javascript-jquery-plugins/posts-viewed-recently/
 Description: Posts Viewed Recently plugin shows posts/pages viewed by a visitor as a responsive sidebar widget or in post/page using the shortcode.
-Version: 1.3
+Version: 1.3.1
 Author: AS Tech Solutions
 Author URI: https://www.astech.club/
 Text Domain: posts-viewed-recently
@@ -18,7 +20,7 @@ class ftRecentViewedPosts extends WP_Widget {
 		parent::__construct( 'recent_viewed_posts', // Base ID
 			'Posts Viewed Recently', // Name
 			array(
-				'description' => __( 'Display recent viewed posts/pages by a visitor as a responsive sidebar widget or in page/post using the shortcode', 'posts-viewed-recently' )
+				'description' => __( 'Displays recent viewed posts/pages by a visitor as a responsive sidebar widget or in page/post using the shortcode', 'posts-viewed-recently' )
 			) // Args
 		);
 	}
@@ -92,14 +94,12 @@ class ftRecentViewedPosts extends WP_Widget {
         	<input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>"/>
         	<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'posts-viewed-recently' ); ?></label>
         </p>
-		<?php
-		if ( $widgetID != "__i__" ) {
-			?>
-            <p style="font-size: 11px; opacity:0.6">
-                <span class="shortcodeTtitle">Shortcode:</span>
-                <span class="shortcode">[ft-recentlyviewed widget_id="<?php echo $widgetID; ?>"]</span>
-            </p>
-			<?php
+	<?php if ( $widgetID != "__i__" ) { ?>
+		<p style="font-size: 11px; opacity:0.6">
+			<span class="shortcodeTtitle">Shortcode:</span>
+			<span class="shortcode">[ft-recentlyviewed widget_id="<?php echo $widgetID; ?>"]</span>
+		</p>
+	<?php
 		} // End widget id check
 	}
 
@@ -119,20 +119,6 @@ class ftRecentViewedPosts extends WP_Widget {
 
 	// Widget display
 	function widget( $args, $instance1 ) {
-		$widgetID           = $args['widget_id'];
-		$widgetID           = str_replace( 'recent_viewed_posts-', '', $widgetID );
-		$widgetOptions      = get_option( $this->option_name );
-		$instance1          = $widgetOptions[ $widgetID ];
-		$title              = ( ! empty( $instance1['title'] ) ) ? $instance1['title'] : __( 'Recently Visited Posts' );
-		$title              = apply_filters( 'widget_title', $title, $instance1, $this->id_base );
-		$number             = ( ! empty( $instance1['numberofposts'] ) ) ? absint( $instance1['numberofposts'] ) : 5;
-		$showthumbnail      = isset( $instance1['showthumbnail'] ) ? $instance1['showthumbnail'] : false;
-		$width_image        = empty( $instance1['width'] ) ? '50' : absint( $instance1['width'] );
-		$height_image       = empty( $instance1['height'] ) ? '50' : absint( $instance1['height'] );
-		$alternateImg       = ! empty( $instance1['alternateImg'] ) ? esc_url( $instance1['alternateImg'] ) : '';
-		$show_date          = isset( $instance1['show_date'] ) ? $instance1['show_date'] : false;
-		$selected_posttypes = isset( $instance1["selected_posttypes"] ) && is_array( $instance1["selected_posttypes"] ) ? $instance1["selected_posttypes"] : array();
-		extract( $args, EXTR_SKIP );
 		
 		// Check cookie existence
 		$ft_cookie_posts = isset( $_COOKIE['astx_recent_posts'] ) ? json_decode( $_COOKIE['astx_recent_posts'], true ) : null;
@@ -141,6 +127,22 @@ class ftRecentViewedPosts extends WP_Widget {
 			$ft_cookie_posts = array_diff( $ft_cookie_posts, array( get_the_ID() ) );			
 			// Cookie posts count check after current post removal
 			if ( count( $ft_cookie_posts ) > 0 ):
+				
+				$widgetID           = $args['widget_id'];
+				$widgetID           = str_replace( 'recent_viewed_posts-', '', $widgetID );
+				$widgetOptions      = get_option( $this->option_name );
+				$instance1          = $widgetOptions[ $widgetID ];
+				$title              = ( ! empty( $instance1['title'] ) ) ? $instance1['title'] : __( 'Recently Visited Posts' );
+				$title              = apply_filters( 'widget_title', $title, $instance1, $this->id_base );
+				$number             = ( ! empty( $instance1['numberofposts'] ) ) ? absint( $instance1['numberofposts'] ) : 5;
+				$showthumbnail      = isset( $instance1['showthumbnail'] ) ? $instance1['showthumbnail'] : false;
+				$width_image        = empty( $instance1['width'] ) ? '50' : absint( $instance1['width'] );
+				$height_image       = empty( $instance1['height'] ) ? '50' : absint( $instance1['height'] );
+				$alternateImg       = ! empty( $instance1['alternateImg'] ) ? esc_url( $instance1['alternateImg'] ) : '';
+				$show_date          = isset( $instance1['show_date'] ) ? $instance1['show_date'] : false;
+				$selected_posttypes = isset( $instance1["selected_posttypes"] ) && is_array( $instance1["selected_posttypes"] ) ? $instance1["selected_posttypes"] : array();
+				extract( $args, EXTR_SKIP );
+				
 				$count = 0;
 				// Loop through posts in the cookie array
 				foreach ( $ft_cookie_posts as $postId ) {
@@ -156,18 +158,19 @@ class ftRecentViewedPosts extends WP_Widget {
 							echo $before_title . $title . $after_title;
 							echo '<ul class="recentviewed_post">';
 						}
+						$permalink = esc_url( get_permalink( $ft_post->ID ) );
 						?>
                         <li>
 							<?php if ( $showthumbnail ): ?>
                                 <div class="recentviewed_left" style="width:<?php echo $width_image; ?>px;height:<?php echo $height_image; ?>px;">
 									<?php if ( has_post_thumbnail( $ft_post->ID ) ) { ?>
-                                        <a href="<?php echo esc_url( get_permalink( $ft_post->ID ) ); ?>">
+                                        <a href="<?php echo $permalink; ?>">
 											<?php echo get_the_post_thumbnail( $ft_post->ID, array($width_image, $height_image ) ); ?>
                                         </a>
 										<?php 
 									} elseif ( $alternateImg != '' ) {
 										?>
-                                        <a href="<?php echo esc_url( get_permalink( $ft_post->ID ) ); ?>">
+                                        <a href="<?php echo $permalink; ?>">
                                             <img src="<?php echo $alternateImg; ?>" width="<?php echo $width_image; ?>" height="<?php echo $height_image; ?>" class="wp-post-image"/>
                                         </a>
 										<?php
@@ -178,7 +181,7 @@ class ftRecentViewedPosts extends WP_Widget {
 							endif;
 							?>
                             <div class="recentviewed_right">
-                                <a href="<?php echo esc_url( get_permalink( $ft_post->ID ) ); ?>">
+                                <a href="<?php echo $permalink; ?>">
 									<?php
 									echo apply_filters( 'the_title', $ft_post->post_title, $ft_post->ID );
 									?>
